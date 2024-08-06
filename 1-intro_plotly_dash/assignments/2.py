@@ -3,6 +3,7 @@ import plotly.express as px
 
 from dash import Dash, html, dcc
 from dash.dependencies import Input, Output
+from dash.exceptions import PreventUpdate
 
 
 gdp_df = pd.read_csv("./data/gdp.csv")
@@ -28,6 +29,8 @@ app.layout = html.Div(
     [Input("dropdown", "value")],
 )
 def update_graph(country):
+    if country is None:
+        raise PreventUpdate
     years = gdp_df.columns[2:]
     gdps = gdp_df[gdp_df["Country Name"] == country].iloc[0].values[2:]
 
