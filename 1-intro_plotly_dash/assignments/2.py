@@ -33,15 +33,15 @@ def update_graph(country):
 
     df = pd.DataFrame(
         {
-            "years": years,
-            "gdps": gdps,
+            "Year": years,
+            "GDP": gdps,
         }
     )
 
     fig = px.line(
         df,
-        x="years",
-        y="gdps",
+        x="Year",
+        y="GDP",
     )
     return fig
 
