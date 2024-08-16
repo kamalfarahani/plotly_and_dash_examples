@@ -10,7 +10,6 @@ def load_data() -> pd.DataFrame:
 
 def main() -> None:
     df = load_data()
-    print(df["2020"])
 
     fig = px.choropleth(
         df,
@@ -20,6 +19,13 @@ def main() -> None:
         title="2020 GDP by Country",
         locationmode="ISO-3",
         color_continuous_scale=px.colors.sequential.Plasma,
+        range_color=(0, 30 * 1e12),
+    )
+
+    fig.update_layout(
+        coloraxis_colorbar=dict(
+            title="GDP",
+        )
     )
 
     fig.show()
